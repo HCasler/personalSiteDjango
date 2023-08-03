@@ -31,6 +31,12 @@
     <!-- the scanning procedure -->
     <div class="contentSection">
         <h3>I developed an alignment procedure after many rounds of simulations.</h3>
-        <p>TODO: the simulation process, what kinds of results I got.</p>
+        <p>The main problem I had to solve was as follows: once the beam, target, and detectors are all in place, how can we scan the beam across the target and read the detector signals in such a way as to find the correct beam position? The beam can be moved left, right, up, and down, and can also be angled slightly in those directions. That's four degrees of freedom; mapping all possible combinations of position and angle to a unique detector signal would take far loo long for Mu2e's needs. My goal, then, wass to create a procedure that would disentagle these degrees of freedom somewhat.</p>
+        <p>In order to create my procedure, I had to make a model of the detector in C++ and add it to the larger simulation of the Mu2e experiment as a whole. Once I determined the level of detail my model needed and had it coded up, it was time to get to work. There were a number of different situations I needed to consider when performing these simulations. For example, one of the first ones I did simulated sweeping the proton beam vertically across the front of the target, and looking at how much of the beam made it past the target and into my detectors. I found something interesting: we already knew the beam does not travel in a straight line through the target, but curves upward. It turns out this upward curve is noticeable enough that the relationship between beam position at the target and beam intensity on the detectors is not even close to symmetrical. This proved to be useful, as it meant the results of grazing the beam along one edge in particular were extremely sensitive to changes in the beam's angle.</p>
+        <p>Ultimately, the alignment procedure I came up with can be divided into discrete phases: one for initial rough alignment, one for vertical angle and position alignment, and one for horizontal angle and position alignment.</p>
+    </div>
+
+    <div class="contentSection">
+        <h3>If Mu2e or my research in particular sounds interesting to you, some of the works listed on my <a href="#" onclick="displayPageContent('contentPages/publications.html')">Publications page</a>, including my 300-page dissertaion, cover these topics. You can also check out <a href=https://mu2e.fnal.gov>Mu2e's web site.</a></h3>
     </div>
 </div>
