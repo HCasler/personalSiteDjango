@@ -1,0 +1,85 @@
+
+/*purple header*/
+body {
+    background-color:#faf0e6;
+}
+
+#pageHeader {
+    background-color:#330033;
+    color:#faf0e6;
+}
+
+a {
+    color:#7c0a02;
+}
+
+#navbar {
+    background-color: #330033;
+    border-top: 1px solid white;
+}
+
+.navLink {
+    color:#faf0e6;
+    border-bottom: 1px solid white;
+}
+
+.navLink:hover {
+    background-color: #330033;
+    color:#faf0e6;
+    background-color: #ffa812;
+    color:#330033;
+}
+
+.contentHeadline {
+    color:#330033;
+}
+
+@media all and (max-width:60rem) {
+    .navLink {
+        border-bottom: 0px;
+    }
+
+    .navLink:hover {
+        color:#ffa812;
+        background-color:#330033;
+    }
+}
+
+/*green header
+body {
+    background-color:#f8f8ff;
+}
+
+#pageHeader {
+    background-color:#004242;
+    color:#ffffff;
+}
+
+.navLink {
+    color:#004242;
+}
+
+.navLink:hover {
+    background-color: #004242;
+    color:#f8f8ff;
+}
+
+/*blue header
+body {
+    background-color:#f0f8ff;
+}
+
+#pageHeader {
+    background-color:#545aa7;
+    color:#ffffff;
+}
+
+.navLink {
+    color:#545aa7;
+}
+
+.navLink:hover {
+    background-color: #545aa7;
+    color:#f0f8ff;
+}
+*/

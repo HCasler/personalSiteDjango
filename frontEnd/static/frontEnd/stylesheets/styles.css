@@ -1,0 +1,162 @@
+body {
+    margin:0;
+}
+
+#pageHeader {
+    width:100%;
+    display:flex;
+    margin: 0;
+    padding: 0;
+    top:0;
+    left: 0;
+    right: 0;
+    font-size: 2.75rem;
+    height:4.5rem;
+    position: fixed;
+    z-index: 1;
+}
+
+#topNameBox {
+    width:75%;
+    float:left;
+    margin:.25em;
+}
+
+#socialIcons {
+    width:21%;
+    color:#ffffff;
+    text-align:right;
+    margin:.25em
+
+}
+
+.socialIcon {
+    height:3rem;
+}
+
+#mainSection {
+    display:flex;
+    top:4.5rem;
+}
+
+/*sidebar*/
+#navbar {
+    height:100%;
+    width:22rem;
+    z-index:1;
+    left:0;
+    font-size:1.5rem;
+    position:absolute;
+    top:4.5rem;
+    position: fixed;
+}
+
+a {
+    text-decoration: none;
+}
+
+.navLink {
+    line-height: 4rem;
+    text-indent: .5rem;
+}
+
+#content {
+    position:absolute;
+    left:22rem;
+    width:calc(100% - 22rem);
+}
+
+.pageContent {
+    width:100%;
+        
+}
+    
+.contentHeadline {
+    width:100%;
+    text-align: center;
+    margin-top: 5rem;
+    font-size:1.5rem;
+}
+
+.contentSection {
+    margin-top:2rem;
+    margin-bottom:2.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    font-size:1.25rem;
+}
+
+#headshotContainer {
+    text-align: center;
+    margin-top: 8rem;
+}
+
+#headshot {
+    border-radius: 50%;
+    width: 25%;
+}
+
+.aboutMeContent {
+    margin-top:2rem;
+    margin-bottom:4rem;
+    margin-left: 4rem;
+    margin-right: 4rem;
+    text-align: center;
+    font-size:1.25rem;
+}
+
+@media all and (max-width:60rem) {
+    /*topbar*/
+
+    #pageHeader {
+        position:static;
+        font-size: 2rem;
+    }
+
+    #topNameBox {
+        margin:.375em;
+    }
+
+    #mainSection {
+        flex-direction: column;
+    }
+
+    #navbar {
+        z-index: 1;
+        top:0;
+        left:0;
+        width:100%;
+        font-size:1.5rem;
+        display:flex;
+        flex-wrap: wrap;
+        position:static;
+        
+    }
+
+    .navLink {
+        line-height: 2.5rem;
+        text-indent: 1rem;
+    }
+    
+    #content {
+        left: 0;
+        width: 100%;
+    }
+
+    .contentHeadline {
+        font-size: 1.5rem;
+        margin-top: 10rem;
+    }
+
+    #aboutMeHeadline {
+        margin-top: 4rem;
+    }
+
+    #headshotContainer {
+        margin-top: 10rem;
+    }
+
+    #headshot {
+        width: 40%;
+    }
+}
