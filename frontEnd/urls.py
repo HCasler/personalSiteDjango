@@ -10,4 +10,7 @@ urlpatterns = [
     path("contentPages/publications.html", views.publications, name="publications"),
     path("contentPages/contact.html", views.contact, name="contact"),
     path("contentPages/comingSoon.html", views.comingSoon, name="comingSoon"),
+
+
+    path("<path:other_path>", views.nonexistent, name="nonexistent"),
 ]

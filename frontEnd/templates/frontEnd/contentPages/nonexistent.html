@@ -1,0 +1,47 @@
+ <!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <title>Helenka Casler - don't have this page</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'frontEnd/icons/favicon.ico' %}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="{% static 'frontEnd/stylesheets/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'frontEnd/stylesheets/colors.css' %}">
+    <script type="text/javascript" src="{% static 'frontEnd/scripts/functions.js' %}"></script>
+</head>
+
+<body>
+
+<div id="pageHeader">
+        <!-- will go across top -->
+        <div id="topNameBox">Helenka Casler</div>
+        <div id="socialIcons"><a href=https://www.linkedin.com/in/helenka-casler/><img class=socialIcon src="{% static 'frontEnd/icons/In-White-96@2x.png' %}"></a></div>
+    </div>
+
+    <div id="mainSection">
+        <!-- everything other than the header -->
+        <div id="navbar">
+            <!-- down side on desktop, across top on narrow screens -->
+            <a href="{% url 'index'  %}" onclick="displayPageContent('contentPages/aboutMe.html')"><div class="navLink">Back to Site</div></a>
+            <!--<a href="{% url 'index'  %}" onclick="displayPageContent('contentPages/coding.html')"><div class="navLink">Software Engineering</div></a>
+            <a href="#" onclick="displayPageContent('contentPages/research.html')"><div class="navLink">My PhD Research</div></a>
+            <a href="#" onclick="displayPageContent('contentPages/publications.html')"><div class="navLink">Publications</div></a>
+            <a href="#" onclick="displayPageContent('contentPages/contact.html')"><div class="navLink">Contact</div></a> -->
+        </div>
+        <div id="content">
+            <div id="comingSoon" class="pageContent">
+    <div class="contentHeadline"><h1>No such page</h1></div>
+
+    <div class="contentSection">
+        <h3>The page you requested does not exist</a></h3>
+    </div>
+</div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
