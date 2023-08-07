@@ -1,8 +1,6 @@
 from django.test import TestCase
 from django.contrib.staticfiles.storage import staticfiles_storage
 
-# Create your tests here.
-
 class NonexistentResourceTests(TestCase):
 
     def testNonExistentMainPage(self):
@@ -21,4 +19,29 @@ class NonexistentResourceTests(TestCase):
     def testNonExistentStaticFile(self):
         response = self.client.get(staticfiles_storage.url('frontEnd/images/noSuchImageHere.jpg'))
         self.assertEqual(response.status_code, 404)
+
+
+class PageExistsTests(TestCase):
+
+    # paths to subpages, and unique elements in each
+    allSubPages = {"/contentPages/aboutMe.html":'<div id="aboutMe" class="pageContent">',
+        "/contentPages/coding.html": '<div id="softwareEngineering" class="pageContent">',
+        "/contentPages/contact.html": '<div id="contact" class="pageContent">',
+        "/contentPages/publications.html": '<div id="publications" class="pageContent">',
+        "/contentPages/research.html": '<div id="research" class="pageContent">',
+    }
+
+    def testMainPageExists(self):
+        response = self.client.get("")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('<div id="navbar">', str(response.content))
+
+    def testSubPagesExist(self):
+        for pagePath in self.allSubPages:
+            response = self.client.get(pagePath)
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(self.allSubPages[pagePath], str(response.content))
+            self.assertNotIn('<div id="navbar">', str(response.content))
+
+
 
