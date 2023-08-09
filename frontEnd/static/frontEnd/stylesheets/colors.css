@@ -4,13 +4,13 @@ body {
     background-color:#faf0e6;
 }
 
-#pageHeader {
-    background-color:#330033;
-    color:#faf0e6;
-}
-
 a {
     color:#7c0a02;
+}
+
+#pageHeader, a#topNameLink{
+    background-color:#330033;
+    color:#faf0e6;
 }
 
 #navbar {

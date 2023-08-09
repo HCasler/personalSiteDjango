@@ -12,6 +12,7 @@ urlpatterns = [
     path("contentPages/publications.html", views.publications, name="publications"),
     path("contentPages/contact.html", views.contact, name="contact"),
     path("contentPages/comingSoon.html", views.comingSoon, name="comingSoon"),
+    path("contentPages/default.html", views.defaultSubPage, name="defaultSubPage"),
     path("contentPages/<path:other_path>", views.nonexistentSubpage, name="nonexistentSubpage"),
 
 

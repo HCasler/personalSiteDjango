@@ -72,3 +72,6 @@ def nonexistent(request, other_path):
     resp.status_code = 404
     return resp
 
+
+def defaultSubPage(request):
+    return aboutMe(request)
