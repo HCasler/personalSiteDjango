@@ -21,11 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-with open(BASE_DIR / 'confs/secKey') as f:
-    SECRET_KEY = f.read().strip()
+SECRET_KEY = os.environ.get('django_secret_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('django_debug', '') != 'False'
 
 ALLOWED_HOSTS = []
 
@@ -33,13 +32,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'frontEnd.apps.FrontendConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'frontEnd'
 ]
 
 MIDDLEWARE = [
@@ -82,6 +81,7 @@ DATABASES = {
         'OPTIONS': {
             'read_default_file': str(BASE_DIR / 'confs/my.cnf'),
         },
+        'PASSWORD': os.environ.get('django_mysql_password', 'NoPasswordEnvVar')
     }
 }
 
