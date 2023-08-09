@@ -16,7 +16,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 LOG_BASE_DIR = os.environ.get('django_log_base_dir')
-CONF_BASE_DIR = os.environ.get('django_conf_base_dir')
 
 
 # Quick-start development settings - unsuitable for production
@@ -35,6 +34,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'frontEnd.apps.FrontendConfig',
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -81,9 +81,10 @@ WSGI_APPLICATION = 'personalSiteDjango.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'read_default_file': CONF_BASE_DIR + '/my.cnf',
-        },
+        'NAME': os.environ.get('django_db'),
+        'HOST': os.environ.get('django_db_host'),
+        'USER': os.environ.get('django_db_user'),
+        'PORT': os.environ.get('diango_db_port'),
         'PASSWORD': os.environ.get('django_mysql_password', 'NoPasswordEnvVar')
     }
 }
@@ -124,6 +125,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = './static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
