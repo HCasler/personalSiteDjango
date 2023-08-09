@@ -15,6 +15,8 @@ import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+LOG_BASE_DIR = os.environ.get('django_log_base_dir')
+CONF_BASE_DIR = os.environ.get('django_conf_base_dir')
 
 
 # Quick-start development settings - unsuitable for production
@@ -79,7 +81,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
-            'read_default_file': str(BASE_DIR / 'confs/my.cnf'),
+            'read_default_file': CONF_BASE_DIR + '/my.cnf',
         },
         'PASSWORD': os.environ.get('django_mysql_password', 'NoPasswordEnvVar')
     }
@@ -146,13 +148,13 @@ LOGGING = {
             "level": "DEBUG",
             "filters": ["require_debug_true"],
             "class": "logging.FileHandler",
-            "filename": BASE_DIR / 'log/debugFrontEnd.log',
+            "filename": LOG_BASE_DIR + '/debugFrontEnd.log',
             "formatter": "verbose",
         },
         "regularFile": {
             "level": "INFO",
             "class": "logging.FileHandler",
-            "filename": BASE_DIR / 'log/personalSite.log',
+            "filename": LOG_BASE_DIR + '/personalSite.log',
             "formatter": "verbose",
         },
     },
