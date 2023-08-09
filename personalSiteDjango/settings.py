@@ -27,7 +27,9 @@ SECRET_KEY = os.environ.get('django_secret_key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('django_debug', '') != 'False'
 
-ALLOWED_HOSTS = []
+APP_ENV = os.environ.get('django_app_env', 'local')
+
+ALLOWED_HOSTS = [os.environ.get('WEBSITE_HOSTNAME'), os.environ.get('hc_personal_hostname')] if APP_ENV == 'azure' else []
 
 
 # Application definition
