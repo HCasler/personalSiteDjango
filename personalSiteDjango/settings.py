@@ -136,9 +136,15 @@ LOGGING = {
             "style": "{",
         },
     },
+    "filters": {
+        "require_debug_true": {
+            "()": "django.utils.log.RequireDebugTrue",
+        },
+    },
     "handlers": {
         "debugFileFE": {
             "level": "DEBUG",
+            "filters": ["require_debug_true"],
             "class": "logging.FileHandler",
             "filename": BASE_DIR / 'log/debugFrontEnd.log',
             "formatter": "verbose",
