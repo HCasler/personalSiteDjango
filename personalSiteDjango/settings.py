@@ -83,11 +83,11 @@ WSGI_APPLICATION = 'personalSiteDjango.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('django_db'),
-        'HOST': os.environ.get('django_db_host'),
-        'USER': os.environ.get('django_db_user'),
-        'PORT': os.environ.get('diango_db_port'),
-        'PASSWORD': os.environ.get('django_mysql_password', 'NoPasswordEnvVar')
+        'NAME': os.environ.get('AZURE_MYSQL_NAME') if APP_ENV == 'azure' else os.environ.get('django_db'),
+        'HOST': os.environ.get('AZURE_MYSQL_HOST') if APP_ENV == 'azure' else os.environ.get('django_db_host'),
+        'USER': os.environ.get('AZURE_MYSQL_USER') if APP_ENV == 'azure' else os.environ.get('django_db_user'),
+        #'PORT': os.environ.get('AZURE_MYSQL_NAME') if APP_ENV == 'azure' else os.environ.get('diango_db_port'),
+        'PASSWORD': os.environ.get('AZURE_MYSQL_PASSWORD') if APP_ENV == 'azure' else os.environ.get('django_mysql_password', 'NoPasswordEnvVar')
     }
 }
 
