@@ -6,7 +6,11 @@ async function displayPageContent(subpage) {
     subpage = subpage.replace('http://', '')
     subpage = subpage.replace('https://', '')
     // retrieve the content
-    const response = await fetch(subpage);
+    const response = await fetch(subpage, {
+        'headers': {
+            'X-LOAD-AS-SUBPAGE':'True',
+        },
+    });
     const newText = await response.text();
     // stick it on the page
     contentBase = document.getElementById("content");

@@ -10,6 +10,9 @@ def returnSubPageOr404(request, templatePath, context):
     except TemplateDoesNotExist:
         logger.error("Failed to retrieve template {0}".format(templatePath))
         return nonexistentSubpage(request, request.path)
+    except Exception as err:
+        logger.error("Failed to retrieve {0} with context {1}:\n{2}".format(templatePath, context, err))
+        return err500(request)
 
 # ~~~~ actual views start here ~~~~ #
 
@@ -20,6 +23,9 @@ def index(request):
     except TemplateDoesNotExist:
         logger.critical("Failed to retrieve template frontEnd/index.html")
         return nonexistent(request, 'frontEnd/index.html')
+    except Exception as err:
+        logger.error("Failed to retrieve {0} with context {1}:\n{2}".format(templatePath, context, err))
+        return err500(request)
 
 def aboutMe(request):
     logger.debug("received {0} request for about-me page".format(request.method))
@@ -54,9 +60,17 @@ def nonexistentSubpage(request, other_path=None):
     return resp
 
 def nonexistent(request, other_path):
-    logger.error("received {0} request for nonexistent path {1}".format(request.method, other_path))
-    resp = render(request, "frontEnd/nonexistent.html", {})
-    resp.status_code = 404
+    if 'HTTP_X_LOAD_AS_SUBPAGE' in request.META and request.META['HTTP_X_LOAD_AS_SUBPAGE']:
+        return nonexistentSubpage(request, other_path)
+    else:
+        logger.error("received {0} request for nonexistent path {1}".format(request.method, other_path))
+        resp = render(request, "frontEnd/nonexistent.html", {})
+        resp.status_code = 404
+        return resp
+
+def err500(request):
+    resp = render(request, "frontEnd/500.html", {})
+    resp.status_code = 500
     return resp
 
 
