@@ -12,14 +12,12 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+import env_specific
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 LOG_BASE_DIR = os.environ.get('django_log_base_dir')
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('django_secret_key')
@@ -29,7 +27,7 @@ DEBUG = os.environ.get('django_debug', '') != 'False'
 
 APP_ENV = os.environ.get('django_app_env', 'local')
 
-ALLOWED_HOSTS = [os.environ.get('WEBSITE_HOSTNAME'), os.environ.get('hc_personal_hostname')] if APP_ENV == 'azure' else []
+ALLOWED_HOSTS = env_specific.getAllowedHosts(APP_ENV)
 
 
 # Application definition
@@ -83,14 +81,11 @@ WSGI_APPLICATION = 'personalSiteDjango.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('AZURE_MYSQL_NAME') if APP_ENV == 'azure' else os.environ.get('django_db'),
-        'HOST': os.environ.get('AZURE_MYSQL_HOST') if APP_ENV == 'azure' else os.environ.get('django_db_host'),
-        'USER': os.environ.get('AZURE_MYSQL_USER') if APP_ENV == 'azure' else os.environ.get('django_db_user'),
-        #'PORT': os.environ.get('AZURE_MYSQL_NAME') if APP_ENV == 'azure' else os.environ.get('diango_db_port'),
-        'PASSWORD': os.environ.get('AZURE_MYSQL_PASSWORD') if APP_ENV == 'azure' else os.environ.get('django_mysql_password', 'NoPasswordEnvVar'),
-        'OPTIONS': {
-            'ssl': {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}
-        } if APP_ENV == 'azure' else {},
+        'NAME': env_specific.getDBName(APP_ENV),
+        'HOST': env_specific.getDBHost(APP_ENV),
+        'USER': env_specific.getDBUser(APP_ENV),
+        'PASSWORD': env_specific.getDBPassword(APP_ENV),
+        'OPTIONS': env_specific.getDBOptions(APP_ENV),
     }
 }
 
