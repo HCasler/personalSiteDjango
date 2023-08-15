@@ -6,17 +6,7 @@ import os
 
 def getAllowedHosts(appEnv):
     if appEnv == "local":
-        from subprocess import Popen, PIPE
-        import re
-        ips = ['.localhost', '127.0.0.1', '[::1]']
-        # get local ip
-        allOutput = ""
-        with Popen(["ifconfig"], stdout=PIPE) as proc:
-            allOutput = str(proc.stdout.read())
-        m = re.search(r"broadcast (?P<localIP>[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)", allOutput)
-        if m and m.group('localIP'):
-            ips.append(m.group('localIP'))
-        return ips 
+        return ['.localhost', '127.0.0.1', '[::1]']
     elif appEnv == 'azure':
         return [os.environ.get('WEBSITE_HOSTNAME'), os.environ.get('hc_personal_hostname')]
     else:
