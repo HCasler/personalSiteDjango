@@ -17,16 +17,19 @@ body {
 }
 
 #topNameBox {
-    width:75%;
+    /*width:10em;*/
+    width:calc(100% - 8rem);
     float:left;
     margin:.25em;
 }
 
 #socialIcons {
-    width:21%;
+    /*width:calc(100% - 10em);*/
+    width:8rem;
     color:#ffffff;
     text-align:right;
-    margin:.25em
+    margin:.25em;
+    float:right;
 
 }
 
