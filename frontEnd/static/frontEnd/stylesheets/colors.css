@@ -35,6 +35,21 @@ a {
 }
 
 @media all and (max-width:60rem) {
+
+    #navBarCollapser {
+        color:#faf0e6;
+        background-color:#330033;
+        border-top: 1px solid white;
+        border-bottom: none;
+        border-left: none;
+        border-right: none;
+    }
+
+    /*.collapser:hover {
+        color:#ffa812;
+        background-color:#330033;
+    }
+
     .navLink {
         border-bottom: 0px;
     }
@@ -42,7 +57,7 @@ a {
     .navLink:hover {
         color:#ffa812;
         background-color:#330033;
-    }
+    }*/
 }
 
 /*green header

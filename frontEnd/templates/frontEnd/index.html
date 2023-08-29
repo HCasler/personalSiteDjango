@@ -21,6 +21,8 @@
 
     <div id="mainSection">
         <!-- everything other than the header -->
+        <!-- button to show/hide the nav bar on mobile -->
+        <button id="navBarCollapser" class="collapser" onclick="console.log('clicked');toggleNavBar()">Menu</button>
         <div id="navbar">
             <!-- down side -->
             <a href="#" onclick="displayPageContent('{% url "aboutMe" %}')"><div class="navLink">About Me</div></a>
