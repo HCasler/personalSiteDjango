@@ -1,7 +1,6 @@
 // function to make navbar appear and disappear
 
 function toggleNavBar() {
-    console.log("toggling nav bar")
     navBar = document.getElementById("navbar")
     if (navBar.style.display !== "none") {
       navBar.style.display = "none";
@@ -30,9 +29,8 @@ async function displayPageContent(subpage) {
     contentBase.innerHTML = newText;
     // if there's a visible menu button, hide the navbar after clicking
     menuButton = document.getElementById("navBarCollapser");
-    console.log("Here's the menu button display value: ");
-    console.log(menuButton.style.display);
-    if (menuButton.style.display !== "" && menuButton.style.display !== "none") {
+    menuButtonDisplay = getComputedStyle(menuButton).display;
+    if (menuButtonDisplay !== "none") {
         toggleNavBar();
     }
 }
