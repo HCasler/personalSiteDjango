@@ -34,6 +34,7 @@ ALLOWED_HOSTS = env_specific.getAllowedHosts(APP_ENV)
 
 INSTALLED_APPS = [
     'frontEnd.apps.FrontendConfig',
+    'video.apps.VideoConfig',
     'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
