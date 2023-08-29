@@ -1,0 +1,18 @@
+<div id="videoDemo" class="pageContent">
+    {% load static %}
+    <div class="contentHeadline"><h1>Video Streaming Demo</h1></div>
+    <div class="aboutMeContent">
+        <p>Click play on the video below</p>
+         <video id="videoDemoPlayer" poster="TODO thumbnail" controls>
+            <source src="playlist.m3u8" type="application/x-mpegURL">
+            Your browser does not support the video tag.
+        </video> 
+    </div>
+
+    <!-- skill summary -->
+    <div class="contentSection">
+        <h3>This video was streamed using the HLS (HTTP Live Streaming) protocol</h3>
+        <p>I'm going to put some text here giving a brief explanantion and links for more info.
+        </p>
+    </div>
+</div>

@@ -27,6 +27,8 @@ def index(request):
         logger.error("Failed to retrieve {0} with context {1}:\n{2}".format(templatePath, context, err))
         return err500(request)
 
+# ~~~ content sub-pages ~~~ #
+
 def aboutMe(request):
     logger.debug("received {0} request for about-me page".format(request.method))
     return returnSubPageOr404(request, "frontEnd/contentPages/aboutMe.html", {})
@@ -47,9 +49,15 @@ def contact(request):
     logger.debug("received {0} request for contact page".format(request.method))
     return returnSubPageOr404(request, "frontEnd/contentPages/contact.html", {})
 
+def videoDemo(request):
+    logger.debug("received {0} request for video demo page".format(request.method))
+    return returnSubPageOr404(request, "frontEnd/contentPages/videoDemo.html", {})
+
 def comingSoon(request):
     logger.debug("received {0} request for coming-soon page".format(request.method))
     return returnSubPageOr404(request, "frontEnd/contentPages/cominSoon.html", {})
+
+# ~~~ error pages ~~~ #
 
 def nonexistentSubpage(request, other_path=None):
     logger.error("received {0} request for nonexistent path {1}".format(request.method, other_path))
