@@ -90,6 +90,9 @@ DATABASES = {
     }
 }
 
+# File or object storage
+STORAGE_BASE = env_specific.getStorageBase(APP_ENV)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

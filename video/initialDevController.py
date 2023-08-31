@@ -4,6 +4,7 @@ This way we cna change this logic without rewriting views.
 Production implementation should have these same functions, etc.
 """
 from django.core.exceptions import BadRequest
+from .largeItemStorage import localStorage as DataStore
 
 from enum import Enum
 class MediaType(Enum):
@@ -14,59 +15,49 @@ class MediaType(Enum):
 
 
 def getManifestFile(vidId):
-    fileData = None
-    with open('video/static/video/sampleManifest.m3u8') as f:
-        fileData = f.read()
-    return fileData
+    pth = "videoDemoStuff/videoToUse/manifest.m3u8"
+    return DataStore.getFile(pth)
 
 
 def getPlaylist(vidId, mtype, bandwidth=None):
     fileData = None
-    localFile = None
+    pth = None
     if mtype == MediaType.VIDEO:
         if bandwidth is None:
             raise BadRequest("Playlist of type video must specify a bandwidth")
         else:
-            localFile = 'video/static/video/sampleVideoPlaylist.m3u8'
+            pth = "videoDemoStuff/videoToUse/{0}/playlist.m3u8".format(bandwidth)
     elif mtype == MediaType.AUDIO:
-        localFile = 'video/static/video/sampleAudioPlaylist.m3u8'
-    elif mtype == MediaType.SUBTITLE or mtype == MediaType.IFRAMES:
+        pth = "videoDemoStuff/videoToUse/audio/playlist.m3u8"
+    elif mtype == MediaType.SUBTITLE:
+        pth = "videoDemoStuff/videoToUse/subtitles/playlist.m3u8"
+    elif mtype == MediaType.IFRAMES:
         raise BadRequest("Media type {0} not implemented".format(mtype))
     else:
         raise BadRequest("Media type {0} not recognized".format(mtype))
 
-    with open(localFile) as f:
-        fileData = f.read()
-    return fileData
-
-
-def getInitFile(vidId, mtype, bandwidth=None):
-    fileData = None
-    localFile = None
-    if mtype == MediaType.VIDEO:
-        if bandwidth is None:
-            raise BadRequest("Playlist of type video must specify a bandwidth")
-        else:
-            return "TODO: video init"
-    elif mtype == MediaType.AUDIO:
-        return "TODO: audio init"
-    elif mtype == MediaType.SUBTITLE or mtype == MediaType.IFRAMES:
-        raise BadRequest("Media type {0} does not use init files".format(mtype))
-    else:
-        raise BadRequest("Media type {0} not recognized".format(mtype))
+    return DataStore.getFile(pth)
 
 
 def getMediaSegment(vidId, mtype, segNum, bandwidth=None):
-    fileData = None
-    localFile = None
+    pth = None
     if mtype == MediaType.VIDEO:
         if bandwidth is None:
             raise BadRequest("Playlist of type video must specify a bandwidth")
         else:
-            return "TODO: video segment {0}".format(segNum)
+            pth = "videoDemoStuff/videoToUse/{0}/seg_{1:0>2d}.ts".format(bandwidth, segNum)
     elif mtype == MediaType.AUDIO:
-        return "TODO: audio segment {0}".format(segNum)
-    elif mtype == MediaType.SUBTITLE or mtype == MediaType.IFRAMES:
-        raise BadRequest("Media type {0} does not use init files".format(mtype))
+        pth = "videoDemoStuff/videoToUse/audio/seg_{0:0>2d}.ts".format(segNum)
+    elif mtype == MediaType.SUBTITLE:
+        pth = "videoDemoStuff/videoToUse/subtitles/NASA_14225_Lucy_EGA1_Captions.en_US.vtt"
+    elif mtype == MediaType.IFRAMES:
+        raise BadRequest("Media type {0} not implemented".format(mtype))
     else:
         raise BadRequest("Media type {0} not recognized".format(mtype))
+
+    return DataStore.getFileStream(pth)
+
+def getThumbnail(vidId):
+    pth = "videoDemoStuff/videoToUse/thumbnail.png"
+    return DataStore.getFile(pth)
+

@@ -38,3 +38,6 @@ def getDBPassword(appEnv):
 
 def getDBOptions(appEnv):
     return {'ssl': {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}} if appEnv == 'azure' else {}
+
+def getStorageBase(appEnv):
+    return 'TODO' if appEnv == 'azure' else os.environ.get('django_local_storage_base')

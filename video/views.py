@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, FileResponse
 import logging
 
 # TODO: replace this import with the "proper" version for deployment
@@ -24,26 +24,29 @@ def audioPlaylist(request, vidId):
     resp.headers["Content-Type"] = "application/vnd.apple.mpegurl"
     return resp
 
-def videoInit(request, vidId, bandwidth):
-    fileData = VideoController.getInitFile(vidId, VideoController.MediaType.VIDEO, bandwidth)
+def subtitlePlaylist(request, vidId):
+    fileData = VideoController.getPlaylist(vidId, VideoController.MediaType.SUBTITLE, bandwidth=None)
     resp = HttpResponse(fileData)
-    resp.headers["Content-Type"] = "video/mp4"
+    resp.headers["Content-Type"] = "application/vnd.apple.mpegurl"
     return resp
 
 def videoSegment(request, vidId, bandwidth, segNum):
-    fileData = VideoController.getMediaSegment(vidId, VideoController.MediaType.VIDEO, segNum, bandwidth)
-    resp = HttpResponse(fileData)
+    resp = FileResponse(VideoController.getMediaSegment(vidId, VideoController.MediaType.VIDEO, segNum, bandwidth))
     resp.headers["Content-Type"] = "video/mp2t"
-    return resp
-
-def audioInit(request, vidId):
-    fileData = VideoController.getInitFile(vidId, VideoController.MediaType.AUDIO, bandwidth=None)
-    resp = HttpResponse(fileData)
-    resp.headers["Content-Type"] = "video/mp4"
     return resp
 
 def audioSegment(request, vidId, segNum):
-    fileData = VideoController.getMediaSegment(vidId, VideoController.MediaType.AUDIO, segNum, bandwidth=None)
-    resp = HttpResponse(fileData)
+    resp = FileResponse(VideoController.getMediaSegment(vidId, VideoController.MediaType.AUDIO, segNum, bandwidth=None))
     resp.headers["Content-Type"] = "video/mp2t"
+    return resp
+
+def subtitleSegment(request, vidId, subName):
+    resp = FileResponse(VideoController.getMediaSegment(vidId, VideoController.MediaType.SUBTITLE, subName, bandwidth=None))
+    resp.headers["Content-Type"] = "text/vtt"
+    return resp
+
+def thumbnail(request, vidId):
+    fileData = VideoController.getThumbnail(vidId)
+    resp = HttpResponse(fileData)
+    resp.headers["Content-Type"] = "image/png"
     return resp
