@@ -113,6 +113,11 @@ a {
     font-size:1.25rem;
 }
 
+#videoDemoPlayer {
+    width:80%;
+    margin-left:10%;
+}
+
 @media all and (max-width:60rem) {
 
     #pageHeader {
@@ -168,5 +173,10 @@ a {
 
     #headshot {
         width: 40%;
+    }
+
+    #videoDemoPlayer {
+        width:100%;
+        margin:0;
     }
 }
