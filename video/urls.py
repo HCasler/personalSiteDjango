@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path("topVideoInfo", views.topVideoInfo, name="topVideoInfo"),
     path("<vidId>/manifest.m3u8", views.manifest, name="manifest"),
     path("<vidId>/thumbnail", views.thumbnail, name="thumbnail"),
     path("<vidId>/<int:bandwidth>/playlist.m3u8", views.videoPlaylist, name="videoPlaylist"),

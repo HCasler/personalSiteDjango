@@ -14,6 +14,12 @@ class MediaType(Enum):
     IFRAMES =  "ifram"
 
 
+def getVideoInfo(vidId):
+    title = "Lucy Spacecraft Will Slingshot Around Earth"
+    thumbUrl = "video/{0}/thumbnail".format(vidId)
+    manifestUrl = "video/{0}/manifest.m3u8".format(vidId)
+    return {"title": title, "thumbnail": thumbUrl, "manifest": manifestUrl}
+
 def getManifestFile(vidId):
     pth = "videoDemoStuff/videoToUse/manifest.m3u8"
     return DataStore.getFile(pth)
