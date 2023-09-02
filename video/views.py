@@ -7,7 +7,7 @@ from . import initialDevController as VideoController
 logger = logging.getLogger(__name__)
 
 def topVideoInfo(request):
-    vidInfo = VideoController.getVideoInfo(1)
+    vidInfo = VideoController.getTopVideoInfo()
     resp = HttpResponse(vidInfo)
     resp.headers["Content-Type"] = "application/json"
     return resp

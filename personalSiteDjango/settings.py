@@ -158,6 +158,13 @@ LOGGING = {
             "filename": LOG_BASE_DIR + '/debugFrontEnd.log',
             "formatter": "verbose",
         },
+        "debugFileVideo": {
+            "level": "DEBUG",
+            "filters": ["require_debug_true"],
+            "class": "logging.FileHandler",
+            "filename": LOG_BASE_DIR + '/debugVideo.log',
+            "formatter": "verbose",
+        },
         "regularFile": {
             "level": "INFO",
             "class": "logging.FileHandler",
@@ -168,6 +175,11 @@ LOGGING = {
     "loggers": {
         "frontEnd": {
             "handlers": ["debugFileFE"],
+            "level": "DEBUG",
+            "propagate": True,
+        },
+        "video": {
+            "handlers": ["debugFileVideo"],
             "level": "DEBUG",
             "propagate": True,
         },
