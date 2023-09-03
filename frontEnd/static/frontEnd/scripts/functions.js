@@ -12,7 +12,7 @@ function toggleNavBar() {
 
 // function to bring up the content when clicking a link
 
-async function displayPageContent(subpage) {
+async function displayPageContent(subpage, pageName) {
     // strip off any http or https part, then the site
     // will try to treat it as a subPage
     subpage = subpage.replace('http://', '')
@@ -33,6 +33,23 @@ async function displayPageContent(subpage) {
     if (menuButtonDisplay !== "none") {
         toggleNavBar();
     }
+    const loadEvent = new Event(pageName+"Load");
+    contentBase.dispatchEvent(loadEvent);
+}
+
+
+// function to gather data on the sample video
+async function getVideoInfo(evt) {
+    const response = await fetch('video/topVideoInfo');
+    const info = await response.json();
+    console.log(info)
+    titlePar = document.getElementById("demoVideoTitle");
+    titlePar.innerHTML = info.title;
+    vidElem = document.getElementById("videoDemoPlayer");
+    vidElem.poster = info.thumbnail;
+    vidSource = document.createElement("source");
+    vidSource.src = info.manifest
+    vidElem.appendChild(vidSource);
 }
 
 

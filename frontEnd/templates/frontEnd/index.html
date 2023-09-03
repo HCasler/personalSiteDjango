@@ -25,18 +25,19 @@
         <button id="navBarCollapser" class="collapser" onclick="toggleNavBar()">Menu</button>
         <div id="navbar">
             <!-- down side -->
-            <a href="#" onclick="displayPageContent('{% url "aboutMe" %}')"><div class="navLink">About Me</div></a>
-            <a href="#" onclick="displayPageContent('{% url "coding" %}')"><div class="navLink">Software Engineering</div></a>
-            <a href="#" onclick="displayPageContent('{% url "videoDemo" %}')"><div class="navLink">Video Streaming Demo</div></a>
-            <a href="#" onclick="displayPageContent('{% url "research" %}')"><div class="navLink">My PhD Research</div></a>
-            <a href="#" onclick="displayPageContent('{% url "publications" %}')"><div class="navLink">Publications</div></a>
-            <a href="#" onclick="displayPageContent('{% url "contact" %}')"><div class="navLink">Contact</div></a>
+            <a href="#" onclick="displayPageContent('{% url "aboutMe" %}', 'aboutMe')"><div class="navLink">About Me</div></a>
+            <a href="#" onclick="displayPageContent('{% url "coding" %}', 'software')"><div class="navLink">Software Engineering</div></a>
+            <a href="#" onclick="displayPageContent('{% url "videoDemo" %}', 'videoDemo')"><div class="navLink">Video Streaming Demo</div></a>
+            <a href="#" onclick="displayPageContent('{% url "research" %}', 'research')"><div class="navLink">My PhD Research</div></a>
+            <a href="#" onclick="displayPageContent('{% url "publications" %}', 'publications')"><div class="navLink">Publications</div></a>
+            <a href="#" onclick="displayPageContent('{% url "contact" %}', 'contact')"><div class="navLink">Contact</div></a>
         </div>
         <div id="content">
             <!-- main content display -->
             Hello, world!
         </div>
     </div>
+    <script type="text/javascript" src="{% static 'frontEnd/scripts/eventListeners.js' %}"></script>
     <script type="text/javascript">displayPageContent('{% url "defaultSubPage" %}')</script>
 </body>
 </html> 
