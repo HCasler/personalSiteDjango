@@ -42,9 +42,16 @@ async function displayPageContent(subpage, pageName) {
 async function getVideoInfo(evt) {
     const response = await fetch('video/topVideoInfo');
     const info = await response.json();
-    console.log(info)
+    console.log(info);
+    creditStr = "credit: "+info.credit+"; ";
     titlePar = document.getElementById("demoVideoTitle");
     titlePar.innerHTML = info.title;
+    creditPar = document.getElementById("videoCredit");
+    creditPar.innerHTML = creditStr;
+    origLink = document.createElement("a");
+    origLink.href = info.url;
+    origLink.innerHTML = "original here";
+    creditPar.appendChild(origLink);
     vidElem = document.getElementById("videoDemoPlayer");
     vidElem.poster = info.thumbnail;
     vidSource = document.createElement("source");
