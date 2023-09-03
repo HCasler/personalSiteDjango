@@ -1,7 +1,7 @@
 // function to make navbar appear and disappear
 
 function toggleNavBar() {
-    navBar = document.getElementById("navbar")
+    var navBar = document.getElementById("navbar")
     if (navBar.style.display !== "none") {
       navBar.style.display = "none";
     } else {
@@ -25,11 +25,11 @@ async function displayPageContent(subpage, pageName) {
     });
     const newText = await response.text();
     // stick it on the page
-    contentBase = document.getElementById("content");
+    var contentBase = document.getElementById("content");
     contentBase.innerHTML = newText;
     // if there's a visible menu button, hide the navbar after clicking
-    menuButton = document.getElementById("navBarCollapser");
-    menuButtonDisplay = getComputedStyle(menuButton).display;
+    var menuButton = document.getElementById("navBarCollapser");
+    var menuButtonDisplay = getComputedStyle(menuButton).display;
     if (menuButtonDisplay !== "none") {
         toggleNavBar();
     }
@@ -43,20 +43,37 @@ async function getVideoInfo(evt) {
     const response = await fetch('video/topVideoInfo');
     const info = await response.json();
     console.log(info);
-    creditStr = "credit: "+info.credit+"; ";
-    titlePar = document.getElementById("demoVideoTitle");
+    var creditStr = "credit: "+info.credit+"; ";
+    var titlePar = document.getElementById("demoVideoTitle");
     titlePar.innerHTML = info.title;
-    creditPar = document.getElementById("videoCredit");
+    var creditPar = document.getElementById("videoCredit");
     creditPar.innerHTML = creditStr;
-    origLink = document.createElement("a");
+    var origLink = document.createElement("a");
     origLink.href = info.url;
     origLink.innerHTML = "original here";
     creditPar.appendChild(origLink);
-    vidElem = document.getElementById("videoDemoPlayer");
-    vidElem.poster = info.thumbnail;
-    vidSource = document.createElement("source");
-    vidSource.src = info.manifest
-    vidElem.appendChild(vidSource);
+
+
+    var video = document.getElementById('videoDemoPlayer');
+    video.poster  = info.thumbnail;
+    if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        var vidSource = document.createElement("source");
+        vidSource.src = info.manifest;
+        video.appendChild(vidSource);
+        video.src = info.manifest;
+        var subTrack = document.createElement("track");
+        subTrack.label = "English";
+        subTrack.srclang="en";
+        subTrack.src = "video/"+info.id+"/subtitles/engSubs.vtt"
+        video.appendChild(subTrack);
+    } 
+    else if (Hls.isSupported()) {
+        var hls = new Hls({
+            debug: true,
+        });
+        hls.loadSource(info.manifest);
+        hls.attachMedia(video);
+    }
 }
 
 

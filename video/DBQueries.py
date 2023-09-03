@@ -2,7 +2,7 @@
 DB access code
 Keep it out of controller logic code
 """
-from .models import Video, Playlist, MediaSegment
+from .models import Video, Playlist, MediaSegment, Playlist_Type
 import logging
 
 logger = logging.getLogger(__name__)
@@ -31,4 +31,8 @@ def getSegment(vidId, mtype, segNum, bandwidth=None):
         segment = MediaSegment.objects.get(playlist__video_id=vidId, playlist__playlistType=mtype, segmentNum=segNum)
     else:
         segment = MediaSegment.objects.get(playlist__video_id=vidId, playlist__playlistType=mtype, playlist__bandwidth=bandwidth, segmentNum=segNum)
+    return segment
+
+def getSubtitles(vidId):
+    segment = MediaSegment.objects.get(playlist__video_id=vidId, playlist__playlistType=Playlist_Type.SUBTITLE)
     return segment

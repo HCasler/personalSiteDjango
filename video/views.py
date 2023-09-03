@@ -49,7 +49,8 @@ def audioSegment(request, vidId, segNum):
     return resp
 
 def subtitleSegment(request, vidId, subName):
-    resp = FileResponse(VideoController.getMediaSegment(vidId, VideoController.MediaType.SUBTITLE, subName, bandwidth=None))
+    fileData = VideoController.getSubtitles(vidId)
+    resp = HttpResponse(fileData)
     resp.headers["Content-Type"] = "text/vtt"
     return resp
 

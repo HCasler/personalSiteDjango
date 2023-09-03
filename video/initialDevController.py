@@ -22,7 +22,7 @@ def getVideoInfo(vidId):
     theVid = DBQueries.getVideoById(vidId)
     thumbUrl = "video/{0}/thumbnail".format(vidId)
     manifestUrl = "video/{0}/manifest.m3u8".format(vidId)
-    outDict = {"title": theVid.title, "thumbnail": thumbUrl, "manifest": manifestUrl, "credit": theVid.credit, "url": theVid.link}
+    outDict = {"title": theVid.title, "thumbnail": thumbUrl, "manifest": manifestUrl, "credit": theVid.credit, "url": theVid.link, "id": theVid.pk}
     logger.debug(outDict)
     return outDict
 
@@ -71,6 +71,12 @@ def getMediaSegment(vidId, mtype, segNum, bandwidth=None):
 
     logger.debug("storage location: {0}".format(segment.storageLoc))
     return DataStore.getFileStream(segment.storageLoc)
+
+def getSubtitles(vidId):
+    logger.debug("received request for video id {0} subtitles".format(vidId))
+    segment = DBQueries. getSubtitles(vidId)
+    logger.debug("storage location: {0}".format(segment.storageLoc))
+    return DataStore.getFile(segment.storageLoc)
 
 def getThumbnail(vidId):
     theVid = DBQueries.getVideoById(vidId)

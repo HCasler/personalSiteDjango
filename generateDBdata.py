@@ -135,7 +135,7 @@ for i in range(numSubs):
         "fields": {
             "playlist": subPK,
             "segmentNum": i,
-            "storageLoc": "{0}/subtitles/NASA_14225_Lucy_EGA1_Captions.en_US.vtt",
+            "storageLoc": "{0}/subtitles/NASA_14225_Lucy_EGA1_Captions.en_US.vtt".format(storagePrefix),
         }
     }
     jsonOut.append(sub)
