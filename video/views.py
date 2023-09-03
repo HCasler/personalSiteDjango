@@ -1,5 +1,6 @@
 from django.http import HttpResponse, FileResponse
 import logging
+import json
 
 # TODO: replace this import with the "proper" version for deployment
 from . import initialDevController as VideoController
@@ -8,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 def topVideoInfo(request):
     vidInfo = VideoController.getTopVideoInfo()
-    resp = HttpResponse(vidInfo)
+    resp = HttpResponse(json.dumps(vidInfo))
     resp.headers["Content-Type"] = "application/json"
     return resp
 

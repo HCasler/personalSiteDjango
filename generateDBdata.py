@@ -6,12 +6,14 @@ import sys
 import json 
 
 if len(sys.argv) < 2:
-    print("Usage: generateDBdata.py -v videoTitle -s storagePrefix -a numAudioSegments -sub numSubtitleSegments -b bandwidth1 numSegments -b bandwidth2 numSegments")
-    print("Spaces in video titles must be backslash escaped")
+    print("Usage: generateDBdata.py -v videoTitle -cr credit -lk linkToOrig -s storagePrefix -a numAudioSegments -sub numSubtitleSegments -b bandwidth1 numSegments -b bandwidth2 numSegments")
+    print("Spaces in video titles and credit must be backslash escaped")
     sys.exit()
 
 vidTitle = None
 storagePrefix = None
+credit = None
+link = None
 numAudio = 0
 audPK = None
 numSubs = 0
@@ -23,6 +25,12 @@ vidPKs = []
 for i in range(1, len(sys.argv)):
     if sys.argv[i] == '-v':
         vidTitle = sys.argv[i+1]
+        i += 1 # skip the next one
+    if sys.argv[i] == '-cr':
+        credit = sys.argv[i+1]
+        i += 1 # skip the next one
+    if sys.argv[i] == '-lk':
+        Link = sys.argv[i+1]
         i += 1 # skip the next one
     if sys.argv[i] == '-s':
         storagePrefix = sys.argv[i+1]
@@ -49,7 +57,9 @@ vid = {
     "fields": {
         "title": vidTitle,
         "manifestLoc": "{0}/manifest.m3u8".format(storagePrefix),
-        "thumbnailLoc":"{0}/thumbnail.png".format(storagePrefix)
+        "thumbnailLoc":"{0}/thumbnail.png".format(storagePrefix),
+        "credit": credit,
+        "link": linkToOrig
     }
 }
 jsonOut.append(vid)

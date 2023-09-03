@@ -22,7 +22,9 @@ def getVideoInfo(vidId):
     theVid = DBQueries.getVideoById(vidId)
     thumbUrl = "video/{0}/thumbnail".format(vidId)
     manifestUrl = "video/{0}/manifest.m3u8".format(vidId)
-    return {"title": theVid.title, "thumbnail": thumbUrl, "manifest": manifestUrl}
+    outDict = {"title": theVid.title, "thumbnail": thumbUrl, "manifest": manifestUrl, "credit": theVid.credit, "url": theVid.link}
+    logger.debug(outDict)
+    return outDict
 
 def getTopVideoInfo():
     return getVideoInfo(1)

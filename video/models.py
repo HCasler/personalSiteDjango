@@ -14,6 +14,8 @@ class Video(models.Model):
     title = models.CharField(max_length=254)
     manifestLoc = models.CharField(max_length=254)
     thumbnailLoc = models.CharField(max_length=254)
+    credit  = models.CharField(max_length=254)
+    link = models.CharField(max_length=254)
 
 # playlist.m3u8 files
 class Playlist(models.Model):
