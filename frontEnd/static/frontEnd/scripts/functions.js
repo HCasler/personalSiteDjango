@@ -50,6 +50,8 @@ async function getVideoInfo(evt) {
     creditPar.innerHTML = creditStr;
     var origLink = document.createElement("a");
     origLink.href = info.url;
+    origLink.target = "_blank";
+    origLink.rel = "noopener noreferrer"
     origLink.innerHTML = "original here";
     creditPar.appendChild(origLink);
 
