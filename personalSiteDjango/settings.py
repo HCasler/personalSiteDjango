@@ -92,6 +92,8 @@ DATABASES = {
 
 # File or object storage
 STORAGE_BASE = env_specific.getStorageBase(APP_ENV)
+AZURE_STORAGE_CONNECTION_STRING = os.environ.get('AZURE_STORAGE_CONNECTION_STRING', 'notset')
+VIDEO_STORAGE_CONTAINER = os.environ.get('AZURE_VIDEO_CONTAINER', 'notset')
 
 
 # Password validation

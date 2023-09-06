@@ -3,7 +3,7 @@ import logging
 import json
 
 # TODO: replace this import with the "proper" version for deployment
-from . import initialDevController as VideoController
+from . import VideoController
 
 logger = logging.getLogger(__name__)
 

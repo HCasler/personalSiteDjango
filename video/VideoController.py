@@ -4,7 +4,7 @@ This way we cna change this logic without rewriting views.
 Production implementation should have these same functions, etc.
 """
 from django.core.exceptions import BadRequest
-from .largeItemStorage import localStorage as DataStore
+from .largeItemStorage import AzureStorage as DataStore
 from . import DBQueries
 
 import logging
