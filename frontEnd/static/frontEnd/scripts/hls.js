@@ -1,4 +1,15 @@
 // hls.js, from https://github.com/video-dev/hls.js, release 1.4.12
+// Copyright (c) 2017 Dailymotion (http://www.dailymotion.com)
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// This file has been modified to include this block comment containing
+// attribution and license information.
+
 (function __HLS_WORKER_BUNDLE__(__IN_WORKER__){
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
