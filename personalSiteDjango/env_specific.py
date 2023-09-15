@@ -41,3 +41,6 @@ def getDBOptions(appEnv):
 
 def getStorageBase(appEnv):
     return 'TODO' if appEnv == 'azure' else os.environ.get('django_local_storage_base')
+
+def getHTTPSonly(appEnv):
+    return appEnv == 'azure'
