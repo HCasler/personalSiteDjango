@@ -30,6 +30,7 @@ APP_ENV = os.environ.get('django_app_env', 'local')
 ALLOWED_HOSTS = env_specific.getAllowedHosts(APP_ENV)
 
 CSRF_COOKIE_SECURE = env_specific.getHTTPSonly(APP_ENV)
+CSRF_TRUSTED_ORIGINS = env_specific.getTrustedOrigins(APP_ENV)
 SESSION_COOKIE_SECURE = env_specific.getHTTPSonly(APP_ENV)
 
 
