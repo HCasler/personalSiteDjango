@@ -31,7 +31,6 @@ ALLOWED_HOSTS = env_specific.getAllowedHosts(APP_ENV)
 
 CSRF_COOKIE_SECURE = env_specific.getHTTPSonly(APP_ENV)
 SESSION_COOKIE_SECURE = env_specific.getHTTPSonly(APP_ENV)
-SECURE_SSL_REDIRECT = env_specific.getHTTPSonly(APP_ENV)
 
 
 # Application definition
