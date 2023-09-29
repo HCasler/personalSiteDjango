@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 import logging
 from django.template.exceptions import TemplateDoesNotExist
+from .models import PageText
 
 logger = logging.getLogger(__name__)
 
@@ -31,27 +32,33 @@ def index(request):
 
 def aboutMe(request):
     logger.debug("received {0} request for about-me page".format(request.method))
-    return returnSubPageOr404(request, "frontEnd/contentPages/aboutMe.html", {})
+    pageText = get_object_or_404(PageText, name="aboutMe")
+    return returnSubPageOr404(request, "frontEnd/contentPages/aboutMe.html", {"pageText":pageText})
 
 def coding(request):
     logger.debug("received {0} request for coding page".format(request.method))
-    return returnSubPageOr404(request, "frontEnd/contentPages/coding.html", {})
+    pageText = get_object_or_404(PageText, name="coding")
+    return returnSubPageOr404(request, "frontEnd/contentPages/coding.html", {"pageText":pageText})
 
 def research(request):
     logger.debug("received {0} request for research page".format(request.method))
-    return returnSubPageOr404(request, "frontEnd/contentPages/research.html", {})
+    pageText = get_object_or_404(PageText, name="research")
+    return returnSubPageOr404(request, "frontEnd/contentPages/research.html", {"pageText":pageText})
 
 def publications(request):
     logger.debug("received {0} request for publications page".format(request.method))
-    return returnSubPageOr404(request, "frontEnd/contentPages/publications.html", {})
+    pageText = get_object_or_404(PageText, name="publications")
+    return returnSubPageOr404(request, "frontEnd/contentPages/publications.html", {"pageText":pageText})
 
 def contact(request):
     logger.debug("received {0} request for contact page".format(request.method))
-    return returnSubPageOr404(request, "frontEnd/contentPages/contact.html", {})
+    pageText = get_object_or_404(PageText, name="contact")
+    return returnSubPageOr404(request, "frontEnd/contentPages/contact.html", {"pageText":pageText})
 
 def videoDemo(request):
     logger.debug("received {0} request for video demo page".format(request.method))
-    return returnSubPageOr404(request, "frontEnd/contentPages/videoDemo.html", {})
+    pageText = get_object_or_404(PageText, name="videoDemo")
+    return returnSubPageOr404(request, "frontEnd/contentPages/videoDemo.html", {"pageText":pageText})
 
 def comingSoon(request):
     logger.debug("received {0} request for coming-soon page".format(request.method))
